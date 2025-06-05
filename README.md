@@ -1,135 +1,119 @@
-# Express Server Setup Guide
+# Express Backend with TypeScript
 
-This guide walks through setting up a modular Express.js server using functional programming principles.
+A modern Express.js backend application built with TypeScript, following functional programming principles and clean architecture practices.
 
 ## Prerequisites
 - Node.js installed on your system
 - npm (Node Package Manager)
+- MongoDB (Coming soon)
 
 ## Setup Steps
 
-1. Initialize the project:
+1. Clone the repository:
    ```bash
-   npm init -y
+   git clone https://github.com/your-username/express-backend.git
+   cd express-backend
    ```
 
-2. Install necessary dependencies:
+2. Install dependencies:
    ```bash
-   npm install express
-   npm install --save-dev typescript @types/express @types/node ts-node nodemon
+   npm install
    ```
 
-3. Create TypeScript configuration:
-   ```bash
-   npx tsc --init
-   ```
-
-4. Set up project structure:
-   ```
-   express-server/
-   ├── src/
-   │   ├── modules/
-   │   │   └── hello/
-   │   │       ├── controllers/
-   │   │       │   └── helloController.ts
-   │   │       ├── services/
-   │   │       │   └── helloService.ts
-   │   │       ├── types/
-   │   │       │   └── index.ts
-   │   │       └── index.ts
-   │   ├── routes/
-   │   │   ├── hello/
-   │   │   │   └── index.ts
-   │   │   └── index.ts
-   │   └── index.ts
-   ├── package.json
-   ├── tsconfig.json
-   └── README.md
-   ```
-
-5. Configure package.json scripts:
-   ```json
-   {
-     "scripts": {
-       "start": "node dist/index.js",
-       "dev": "nodemon src/index.ts",
-       "build": "tsc"
-     }
-   }
-   ```
-
-6. Run the development server:
+3. Run the development server:
    ```bash
    npm run dev
    ```
 
-## Project Structure Explanation
-- `src/`: Contains all source code files
-  - `modules/`: Contains feature modules
-    - `hello/`: Example module
-      - `controllers/`: Pure functions for handling HTTP requests
-      - `services/`: Business logic functions
-      - `types/`: TypeScript interfaces and types
-      - `index.ts`: Module exports
-  - `routes/`: API route definitions
-    - `hello/`: Routes for hello module
-    - `index.ts`: Route aggregation
-  - `index.ts`: Application setup and server initialization
+## Project Structure
+```
+express-backend/
+├── src/
+│   ├── config/
+│   │   └── index.ts
+│   ├── middlewares/
+│   │   ├── common.ts
+│   │   └── error.ts
+│   ├── routes/
+│   │   ├── v1/
+│   │   │   ├── hello.routes.ts
+│   │   │   └── index.ts
+│   │   └── index.ts
+│   ├── controllers/
+│   │   └── hello/
+│   │       └── controller.ts
+│   ├── services/
+│   │   └── hello/
+│   │       └── service.ts
+│   ├── interfaces/
+│   │   └── hello/
+│   │       └── types.ts
+│   ├── app.ts
+│   └── server.ts
+├── package.json
+├── tsconfig.json
+└── README.md
+```
 
-## Architecture Principles
-- **Functional Programming**: Uses pure functions and avoids classes and mutable state
-- **Module Pattern**: Each feature is a self-contained module with its own types, services, and controllers
-- **Separation of Concerns**: Clear separation between routes, controllers, and business logic
-- **Type Safety**: Full TypeScript support with interfaces for better type checking
+## Architecture Overview
+- **Clean Architecture**: Follows separation of concerns with clear boundaries between layers
+- **Functional Programming**: Emphasizes pure functions and immutability
+- **Type Safety**: Leverages TypeScript for better type checking and developer experience
+- **Modular Design**: Features are organized by domain with clear interfaces
+- **Middleware Pattern**: Uses Express middleware for cross-cutting concerns
+- **Version Control**: API versioning through route organization
 
-## Code Organization
-1. **Types**: Define interfaces for request/response shapes and service contracts
-2. **Services**: Implement pure business logic functions
-3. **Controllers**: Pure functions that handle HTTP requests using services
-4. **Routes**: Define API endpoints and connect them to controllers
-5. **App**: Compose everything together using functional composition
+## Key Features
+- Express.js with TypeScript
+- Structured error handling
+- Request validation (planned)
+- API versioning
+- Environment configuration
+- MongoDB integration (coming soon)
+- Comprehensive logging (planned)
+- API documentation (planned)
 
 ## API Endpoints
-- `GET /api/hello`: Returns a hello world message with timestamp and path information
+### v1
+- `GET /api/v1/hello`: Returns a hello world message with timestamp
 
 ## Development
-The server will run on `http://localhost:3000` by default. Use `npm run dev` for development with hot-reload enabled.
+The server runs on `http://localhost:3000` by default.
+
+### Available Scripts
+- `npm run dev`: Start development server with hot-reload
+- `npm run build`: Build the project
+- `npm start`: Run the built project
+- `npm test`: Run tests (coming soon)
+
+## Upcoming Features
+- [ ] MongoDB integration with Mongoose
+- [ ] Authentication and authorization
+- [ ] Request validation with Joi or Zod
+- [ ] API documentation with Swagger
+- [ ] Comprehensive test suite
+- [ ] Docker support
+- [ ] CI/CD pipeline
 
 ## Testing Endpoints
 
 ### Using curl
 ```bash
 # Test the hello endpoint
-curl http://localhost:3000/api/hello
+curl http://localhost:3000/api/v1/hello
 ```
 
-### Using HTTPie (more readable output)
-```bash
-# Install HTTPie
-npm install -g httpie
-
-# Test the hello endpoint
-http :3000/api/hello
-```
-
-### Using a Web Browser
-Simply visit:
-- http://localhost:3000/api/hello
-
-### Using Postman
-1. Create a new GET request
-2. Enter URL: `http://localhost:3000/api/hello`
-3. Click Send
-
-Expected Response:
+### Expected Response
 ```json
 {
   "message": "Hello, World!",
   "timestamp": "2024-03-06T10:26:53.894Z",
-  "path": "/"
+  "path": "/api/v1/hello"
 }
 ```
 
-## Production
-1. Build the project: `npm run build`
-2. Start the server: `npm start` 
+## Contributing
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+This project is licensed under the [MIT License](LICENSE). 

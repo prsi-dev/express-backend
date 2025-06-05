@@ -1,7 +1,7 @@
 {
-  "name": "express-server",
+  "name": "express-backend",
   "version": "1.0.0",
-  "description": "Express.js server with modular architecture",
+  "description": "Modern Express.js backend with TypeScript and clean architecture",
   "main": "dist/server.js",
   "scripts": {
     "start": "node dist/server.js",
@@ -19,10 +19,12 @@
     "express",
     "typescript",
     "modular",
-    "api"
+    "api",
+    "backend",
+    "clean-architecture"
   ],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
