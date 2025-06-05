@@ -10,6 +10,16 @@ export const config = {
   cors: {
     origin: process.env.CORS_ORIGIN || "http://localhost:3000",
   },
+  mongodb: {
+    uri:
+      process.env.MONGODB_URI?.replace(/\/[^/]*$/, "/sample_mflix") ||
+      "mongodb://localhost:27017/sample_mflix",
+    options: {
+      autoIndex: true,
+      serverSelectionTimeoutMS: 5000,
+      socketTimeoutMS: 45000,
+    },
+  },
 } as const;
 
 // Validate required environment variables
